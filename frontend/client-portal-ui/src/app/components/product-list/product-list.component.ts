@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../models/product';
 import { ProductService } from '../../services/product.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -42,7 +43,10 @@ import { ProductService } from '../../services/product.service';
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.productService.getProducts().subscribe({
@@ -56,6 +60,8 @@ export class ProductListComponent implements OnInit {
   }
 
   placeOrder(product: Product) {
-    console.log('Order placed for:', product);
+    this.router.navigate(['/orders/new'], {
+      queryParams: { productId: product.id }
+    });
   }
 }
