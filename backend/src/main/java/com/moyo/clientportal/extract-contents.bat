@@ -16,10 +16,10 @@ set outputfile=extracted_contents_%datetime%.txt
 echo File extraction started at %time% > %outputfile%
 echo =========================================================== >> %outputfile%
 
-:: Recursively process all files except .txt files
+:: Recursively process all files except .txt and .bat files
 for /r %%F in (*.*) do (
-    :: Check if file extension is not .txt
-    if /i not "%%~xF"==".txt" (
+    :: Check if file extension is not .txt or .bat
+    if /i not "%%~xF"==".txt" if /i not "%%~xF"==".bat" (
         echo Processing: %%F
         
         echo. >> %outputfile%
