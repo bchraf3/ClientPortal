@@ -1,1 +1,18 @@
-<p>order-list works!</p>
+<div class="order-list">
+    <h2>My Orders</h2>
+    <div class="orders-container">
+      @for (order of orders; track order.id) {
+        <div class="order-card">
+          <div class="order-header">
+            <span>Order #{{order.id}}</span>
+            <span class="status">{{order.status}}</span>
+          </div>
+          <div class="order-details">
+            <p>Product ID: {{order.productId}}</p>
+            <p>Quantity: {{order.quantity}}</p>
+            <p>Date: {{order.createdAt | date}}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
