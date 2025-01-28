@@ -7,6 +7,9 @@ import java.time.LocalDateTime;
 public class OrderDTO {
     private Long id;
     private Long productId;
+    private String productName;
+    private String productDescription;
+    private Double productPrice;
     private Integer quantity;
     private String status;
     private LocalDateTime createdAt;

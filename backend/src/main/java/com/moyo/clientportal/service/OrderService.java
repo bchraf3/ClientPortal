@@ -47,6 +47,9 @@ public class OrderService {
         OrderDTO dto = new OrderDTO();
         dto.setId(order.getId());
         dto.setProductId(order.getProduct().getId());
+        dto.setProductName(order.getProduct().getName());
+        dto.setProductDescription(order.getProduct().getDescription());
+        dto.setProductPrice(order.getProduct().getPrice());
         dto.setQuantity(order.getQuantity());
         dto.setStatus(order.getStatus());
         dto.setCreatedAt(order.getCreatedAt());

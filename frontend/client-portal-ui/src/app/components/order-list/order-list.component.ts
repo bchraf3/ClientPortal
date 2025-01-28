@@ -35,6 +35,13 @@ import { OrderService } from '../../services/order.service';
     .order-details {
       color: #666;
     }
+    .order-details h3 {
+      color: #333;
+      margin: 0 0 10px 0;
+    }
+    .order-details p {
+      margin: 5px 0;
+    }
   `]
 })
 export class OrderListComponent implements OnInit {

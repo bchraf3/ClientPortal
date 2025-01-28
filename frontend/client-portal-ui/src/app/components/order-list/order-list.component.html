@@ -1,18 +1,21 @@
 <div class="order-list">
-    <h2>My Orders</h2>
-    <div class="orders-container">
-      @for (order of orders; track order.id) {
-        <div class="order-card">
-          <div class="order-header">
-            <span>Order #{{order.id}}</span>
-            <span class="status">{{order.status}}</span>
-          </div>
-          <div class="order-details">
-            <p>Product ID: {{order.productId}}</p>
-            <p>Quantity: {{order.quantity}}</p>
-            <p>Date: {{order.createdAt | date}}</p>
-          </div>
+  <h2>My Orders</h2>
+  <div class="orders-container">
+    @for (order of orders; track order.id) {
+      <div class="order-card">
+        <div class="order-header">
+          <span>Order #{{order.id}}</span>
+          <span class="status">{{order.status}}</span>
         </div>
-      }
-    </div>
+        <div class="order-details">
+          <h3>{{order.productName}}</h3>
+          <p>{{order.productDescription}}</p>
+          <p>Price: ${{order.productPrice}}</p>
+          <p>Quantity: {{order.quantity}}</p>
+          <p>Total: ${{order.productPrice * order.quantity | number:'1.2-2'}}</p>
+          <p>Date: {{order.createdAt | date:'medium'}}</p>
+        </div>
+      </div>
+    }
   </div>
+</div>
