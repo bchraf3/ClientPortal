@@ -1,13 +1,14 @@
 package com.moyo.clientportal.service;
 
+import com.moyo.clientportal.config.RabbitMQConfig;
 import com.moyo.clientportal.dto.OrderDTO;
 import com.moyo.clientportal.model.Order;
 import com.moyo.clientportal.model.Product;
 import com.moyo.clientportal.repository.OrderRepository;
 import com.moyo.clientportal.repository.ProductRepository;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,10 +17,16 @@ import java.util.stream.Collectors;
 public class OrderService {
     private final OrderRepository orderRepository;
     private final ProductRepository productRepository;
+    private final RabbitTemplate rabbitTemplate;
 
-    public OrderService(OrderRepository orderRepository, ProductRepository productRepository) {
+    public OrderService(
+        OrderRepository orderRepository, 
+        ProductRepository productRepository,
+        RabbitTemplate rabbitTemplate
+    ) {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
+        this.rabbitTemplate = rabbitTemplate;
     }
 
     public List<OrderDTO> getAllOrders() {
@@ -40,7 +47,16 @@ public class OrderService {
         order.setCreatedAt(LocalDateTime.now());
 
         Order savedOrder = orderRepository.save(order);
-        return convertToDTO(savedOrder);
+        OrderDTO savedOrderDTO = convertToDTO(savedOrder);
+
+        // Publish order created event
+        rabbitTemplate.convertAndSend(
+            RabbitMQConfig.EXCHANGE_ORDERS,
+            RabbitMQConfig.ROUTING_KEY_ORDERS,
+            savedOrderDTO
+        );
+
+        return savedOrderDTO;
     }
 
     private OrderDTO convertToDTO(Order order) {
@@ -55,4 +71,5 @@ public class OrderService {
         dto.setCreatedAt(order.getCreatedAt());
         return dto;
     }
+
 }
