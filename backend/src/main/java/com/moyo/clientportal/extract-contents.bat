@@ -1,13 +1,16 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+:: Delete any existing extracted_contents files
+del /f extracted_contents_*.txt 2>nul
+if errorlevel 1 (
+    echo Warning: Could not delete existing extraction files
+)
+
 :: Create timestamp for output file
 for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set datetime=%%I
 set datetime=%datetime:~0,8%_%datetime:~8,6%
 set outputfile=extracted_contents_%datetime%.txt
-
-:: Delete existing output file if it exists (ensures clean start)
-if exist %outputfile% del /f %outputfile%
 
 :: Write initial file header
 echo File extraction started at %time% > %outputfile%
