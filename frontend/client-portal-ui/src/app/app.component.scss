@@ -1,0 +1,38 @@
+.app-container {
+    min-height: 100vh;
+  }
+  
+  header {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    nav {
+      display: flex;
+      gap: 1rem;
+  
+      a {
+        color: white;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+  
+      button {
+        background: none;
+        border: 1px solid white;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    }
+  }
+  
+  main {
+    padding: 1rem;
+  }

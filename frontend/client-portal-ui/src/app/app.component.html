@@ -1,6 +1,11 @@
 <div class="app-container">
   <header>
     <h1>MOYO Client Portal</h1>
+    <nav>
+      <a routerLink="/products">Products</a>
+      <a routerLink="/orders">Orders</a>
+      <button (click)="logout()">Logout</button>
+    </nav>
   </header>
   <main>
     <router-outlet></router-outlet>
