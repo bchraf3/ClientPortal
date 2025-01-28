@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { AuthService as Auth0Service } from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:8080/api';
+  constructor(private auth0: Auth0Service) {}
 
-  constructor(private http: HttpClient) { }
-
-  login(username: string, password: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/auth/login`, { username, password });
+  login() {
+    this.auth0.loginWithRedirect();
   }
 
-  isAuthenticated(): boolean {
-    return !!localStorage.getItem('token');
+  logout() {
+    this.auth0.logout({
+      logoutParams: {
+        returnTo: window.location.origin + '/login'
+      }
+    });
   }
 
-  logout(): void {
-    localStorage.removeItem('token');
+  isAuthenticated() {
+    return this.auth0.isAuthenticated$;
+  }
+
+  getUser() {
+    return this.auth0.user$;
   }
 }
