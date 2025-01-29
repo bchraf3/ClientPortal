@@ -37,6 +37,7 @@ import { Router } from '@angular/router';
       padding: 8px 16px;
       border-radius: 4px;
       cursor: pointer;
+      margin-top: 10px;
     }
   `]
 })

@@ -1,13 +1,18 @@
 <div class="app-container">
-  <header>
-    <h1>MOYO Client Portal</h1>
-    <nav>
-      <a routerLink="/products">Products</a>
-      <a routerLink="/orders">Orders</a>
-      <button (click)="logout()">Logout</button>
-    </nav>
+  <header *ngIf="authService.isAuthenticated() | async">
+    <div class="header-content">
+      <div class="logo">
+        <h1>MOYO</h1>
+        <span class="subtitle">Client Portal</span>
+      </div>
+      <nav>
+        <a routerLink="/products" routerLinkActive="active">Products</a>
+        <a routerLink="/orders" routerLinkActive="active">Orders</a>
+        <button class="logout-btn" (click)="logout()">Logout</button>
+      </nav>
+    </div>
   </header>
-  <main>
+  <main [ngClass]="{'authenticated': authService.isAuthenticated() | async}">
     <router-outlet></router-outlet>
   </main>
 </div>
