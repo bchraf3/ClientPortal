@@ -1,3 +1,5 @@
+[![MOYO Grad Programme Client Portal Case Study - Bouchaib Chraf](https://youtu.be/l0Vd7tcTRN8)](https://youtu.be/l0Vd7tcTRN8)
+
 # MOYO Client Portal Implementation Documentation
 
 ## Core Functionality Implementation
