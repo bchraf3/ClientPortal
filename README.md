@@ -46,30 +46,32 @@
         * Global content delivery
         * SSL certificate management
         * Automated builds and deployments
-    * **Backend Hosting:** AWS EKS (Elastic Kubernetes Service)
-        * Enterprise-grade container orchestration
-        * Multi-AZ deployment for high availability
-        * Automated scaling based on demand
-        * Blue-green deployment support
+    * **Backend Hosting:** AWS Elastic Beanstalk
+        * PaaS solution for Spring Boot application
+        * Automated platform updates
+        * Built-in health monitoring
+        * Simple scaling configuration
+        * Zero-downtime deployments
     * **Message Queue:** Amazon MQ 
         * Managed RabbitMQ service
         * Multi-AZ deployment
         * Enterprise-grade reliability
         * Message persistence and failover
-    * **Database:** Amazon Aurora PostgreSQL
-        * Enterprise-grade relational database
-        * Auto-scaling capabilities
-        * Cross-region replication
-        * Automated backups and point-in-time recovery
+    * **Database:** Amazon RDS for PostgreSQL
+        * Managed relational database
+        * Automated backups
+        * Multi-AZ deployment option
+        * Scalable storage and compute
+        * Cost-effective for single-table design
 
 ## Enterprise Scaling Considerations
 
-* Kubernetes-based container orchestration for maximum scalability
-* Aurora global database for worldwide data access
+* Auto-scaling groups for Elastic Beanstalk
+* Read replicas for RDS if needed
 * Regional deployments for reduced latency
 * Multi-AZ setup for high availability
 * Infrastructure as Code using AWS CloudFormation
-* Monitoring and alerting through CloudWatch
+* CloudWatch for monitoring and alerting
 
 ## Foundation for Future Enhancements
 
