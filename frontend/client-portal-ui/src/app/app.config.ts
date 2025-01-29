@@ -15,7 +15,9 @@ export const appConfig: ApplicationConfig = {
       authorizationParams: {
         redirect_uri: window.location.origin + '/callback',
         audience: 'https://dev-3g6mtg67zy4kst47.us.auth0.com/api/v2/'
-      }
+      },
+      cacheLocation: 'localstorage', // Add this line
+      useRefreshTokens: true // Add this line
     })
   ]
 };
